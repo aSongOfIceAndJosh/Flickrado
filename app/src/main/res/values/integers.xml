@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="main_fragment_grid_layout_manager_col_span">3</integer>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="blur_fragment_dialog_height">200dp</dimen>
+    <dimen name="blur_fragment_dialog_width">350dp</dimen>
+    <dimen name="blur_fragment_dialog_margin">8dp</dimen>
+    <dimen name="blur_fragment_dialog_top_text_bottom_margin">12dp</dimen>
+    <dimen name="blur_fragment_dialog_elevation">8dp</dimen>
+</resources>
