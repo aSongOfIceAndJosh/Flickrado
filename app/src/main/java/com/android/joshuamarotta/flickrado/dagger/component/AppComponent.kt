@@ -3,7 +3,6 @@ package com.android.joshuamarotta.flickrado.dagger.component
 import com.android.joshuamarotta.flickrado.application.FrameworkApplication
 import com.android.joshuamarotta.flickrado.dagger.AppModule
 import com.android.joshuamarotta.flickrado.dagger.module.BuildersModule
-import com.android.joshuamarotta.flickrado.dagger.module.NetworkModule
 import com.android.joshuamarotta.flickrado.dagger.module.RoomModule
 import com.android.joshuamarotta.flickrado.dagger.module.ViewModelModule
 import dagger.BindsInstance
@@ -16,12 +15,11 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-    AndroidSupportInjectionModule::class,
-    AppModule::class,
-    BuildersModule::class,
-   // NetworkModule::class,
-    ViewModelModule::class,
-    RoomModule::class
+        AndroidSupportInjectionModule::class,
+        AppModule::class,
+        BuildersModule::class,
+        ViewModelModule::class,
+        RoomModule::class
     ]
 )
 interface AppComponent : AndroidInjector<FrameworkApplication> {

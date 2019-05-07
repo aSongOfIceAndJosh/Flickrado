@@ -8,12 +8,14 @@ import com.android.joshuamarotta.flickrado.database.dao.FlickrDao
 import com.android.joshuamarotta.flickrado.repositories.MainRepository
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineScope
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module(
     includes = [
-        NetworkModule::class
+        NetworkModule::class,
+        CoroutineModule::class
     ]
 )
 class RoomModule {
@@ -33,5 +35,5 @@ class RoomModule {
 
     @Singleton
     @Provides
-    fun provideRepository(flickrApi: FlickrApi, flickrDao: FlickrDao) = MainRepository(flickrApi = flickrApi, flickrDao = flickrDao)
+    fun provideRepository(scope: CoroutineScope, flickrApi: FlickrApi, flickrDao: FlickrDao) = MainRepository(scope = scope, flickrApi = flickrApi, flickrDao = flickrDao)
 }
