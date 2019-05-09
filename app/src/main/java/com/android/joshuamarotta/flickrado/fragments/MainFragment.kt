@@ -21,10 +21,10 @@ class MainFragment : DaggerFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var mainViewModel: MainViewModel
 
-    private var mainRecyclerViewAdapter: MainRecyclerViewAdapter? = null
-    private lateinit var mainRecyclerView: RecyclerView
-
+    @Inject lateinit var mainRecyclerViewAdapter: MainRecyclerViewAdapter
     private lateinit var onMainRecyclerViewItemClick: (Bundle) -> Unit
+
+    private lateinit var mainRecyclerView: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView =  inflater.inflate(R.layout.main_fragment, container, false)
@@ -35,7 +35,6 @@ class MainFragment : DaggerFragment() {
             detailDialogFragment.show(childFragmentManager, "")
         }
 
-        mainRecyclerViewAdapter = context?.let { context -> MainRecyclerViewAdapter(context, onMainRecyclerViewItemClick) }
         mainRecyclerView = rootView.main_fragment_recycler_view
 
         return rootView
@@ -45,12 +44,11 @@ class MainFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
 
         initMainRecyclerView()
+        mainRecyclerViewAdapter.setListener { onMainRecyclerViewItemClick(it) }
 
         mainViewModel = ViewModelProviders.of(this, viewModelFactory)[MainViewModel::class.java]
         mainViewModel.flickrResponse
-            .observe(this, Observer { flickrResponse -> flickrResponse?.let { mainRecyclerViewAdapter?.setItems(it.items) } }
-            )
-
+            .observe(this, Observer { flickrResponse -> flickrResponse?.let { mainRecyclerViewAdapter.setItems(it.items) } })
     }
 
     private fun initMainRecyclerView() {

@@ -2,6 +2,7 @@ package com.android.joshuamarotta.flickrado.dagger.component
 
 import com.android.joshuamarotta.flickrado.application.FrameworkApplication
 import com.android.joshuamarotta.flickrado.dagger.AppModule
+import com.android.joshuamarotta.flickrado.dagger.module.AdapterModule
 import com.android.joshuamarotta.flickrado.dagger.module.BuildersModule
 import com.android.joshuamarotta.flickrado.dagger.module.RoomModule
 import com.android.joshuamarotta.flickrado.dagger.module.ViewModelModule
@@ -19,7 +20,8 @@ import javax.inject.Singleton
         AppModule::class,
         BuildersModule::class,
         ViewModelModule::class,
-        RoomModule::class
+        RoomModule::class,
+        AdapterModule::class
     ]
 )
 interface AppComponent : AndroidInjector<FrameworkApplication> {

@@ -11,15 +11,17 @@ import com.android.joshuamarotta.flickrado.api.response.formattedName
 import com.android.joshuamarotta.flickrado.viewholders.FlickrItemViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import javax.inject.Inject
 
 const val AUTHOR = "author"
 const val IMAGE_URL = "image_url"
 const val TITLE = "title"
 
-class MainRecyclerViewAdapter internal constructor(private val context: Context, private val onItemClick: (Bundle) -> Unit): RecyclerView.Adapter<FlickrItemViewHolder>() {
+class MainRecyclerViewAdapter @Inject internal constructor(context: Context/*, private val onItemClick: (Bundle) -> Unit*/): RecyclerView.Adapter<FlickrItemViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
     private var items = emptyList<FlickrItem>()
+    private lateinit var onItemClick: (Bundle) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         FlickrItemViewHolder(inflater.inflate(R.layout.flickr_item_view, parent, false))
@@ -46,6 +48,10 @@ class MainRecyclerViewAdapter internal constructor(private val context: Context,
     internal fun setItems(flickrItems: List<FlickrItem>) {
         items = flickrItems
         notifyDataSetChanged()
+    }
+
+    internal fun setListener(onItemClick: (Bundle) -> Unit) {
+        this.onItemClick = onItemClick
     }
 }
 
